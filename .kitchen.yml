@@ -1,0 +1,33 @@
+---
+driver:
+  name: ec2
+  ssh_key: <%= File.expand_path('~/.ssh/kp-2011-05-02.pem') %>
+  security_group_ids: ["sg-3c268355"]
+  aws_ssh_key_id: "kp-2011-05-02"
+  region: us-east-1
+  availability_zone: us-east-1e
+  require_chef_omnibus: true
+  flavor_id: "m3.medium"
+  image_id: ami-9a562df2
+  ssh_timeout: 20
+  ssh_retries: 5
+  iam_profile_name: TestKitchenRole
+ 
+platforms:
+  - name: ubuntu-14.04
+    driver:
+      username: ubuntu
+      tags:
+        Name: optoro_zookeeper-test_kitchen
+ 
+provisioner:
+  name: chef_zero
+  require_chef_omnibus:  11.16.4
+  ebs_delete_on_termination: true
+ 
+suites:
+- name: default
+  encrypted_data_bag_secret_key_path: "test/integration/encrypted_data_bag_secret"
+  run_list:
+    - recipe[optoro_zookeeper::default]
+
