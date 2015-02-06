@@ -23,4 +23,7 @@ suites:
   encrypted_data_bag_secret_key_path: "test/integration/encrypted_data_bag_secret"
   run_list:
     - recipe[optoro_zookeeper::default]
+  attributes:
+    apt: 
+      compiletime: true
 
