@@ -1,14 +1,7 @@
 ---
 driver:
   name: ec2
-  ssh_key: <%= File.expand_path('~/.ssh/kp-2011-05-02.pem') %>
-  security_group_ids: ["sg-3c268355"]
-  aws_ssh_key_id: "kp-2011-05-02"
-  region: us-east-1
-  availability_zone: us-east-1e
   require_chef_omnibus: true
-  flavor_id: "m3.medium"
-  image_id: ami-9a562df2
   ssh_timeout: 20
   ssh_retries: 5
   iam_profile_name: TestKitchenRole
