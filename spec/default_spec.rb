@@ -1,4 +1,4 @@
-describe 'optoro_skel::default' do
+describe 'optoro_zookeeper::default' do
   Resources::PLATFORMS.each do |platform, value|
     value['versions'].each do |version|
       context "On #{platform} #{version}" do
