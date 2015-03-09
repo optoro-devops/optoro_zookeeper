@@ -4,7 +4,7 @@ maintainer 'devops@optoro.com'
 license 'MIT'
 description 'Installs and configures Zookeeper using exhibitor'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version '0.0.3'
+version '0.0.4'
 
 depends 'apt', '>= 2.6.1'
 depends 'exhibitor', '>= 0.4.0'
