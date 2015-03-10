@@ -7,7 +7,7 @@ describe 'optoro_zookeeper::default' do
     it { should be_directory }
     it { should be_mode '755' }
     it { should be_owned_by 'zookeeper' }
-    it { should be_grouped_into 'root' }
+    it { should be_grouped_into 'zookeeper' }
   end
   describe file('/opt/exhibitor/exhibitor.s3.properties') do
     it { should be_file }

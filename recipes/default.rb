@@ -32,9 +32,9 @@ zookeeper '3.4.6' do
 end
 
 directory node['zookeeper']['config']['dataDir'] do
-  mode 0755
+  mode '0755'
   owner node['zookeeper']['user']
-  owner node['zookeeper']['group']
+  group node['zookeeper']['group']
   action :create
 end
 

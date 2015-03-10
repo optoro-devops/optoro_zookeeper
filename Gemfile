@@ -17,8 +17,10 @@ group :development do
   gem 'guard-bundler',  '~> 2.0.0'
   gem 'chef-zero', '~> 2.2.1'
   gem 'foodcritic', '~> 4.0.0'
-  gem 'chefspec', '~> 4.1.1'
+  gem 'chefspec', '~> 4.2.0'
   gem 'rspec', '~> 3.1.0'
   gem 'strainer', '~> 3.4.0'
   gem 'rubocop', '~> 0.27.1'
+  gem 'chef-rewind', '~> 0.0.9'
+  gem 'right_aws', '~> 3.0.5'
 end
