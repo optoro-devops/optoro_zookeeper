@@ -10,6 +10,24 @@
 chef_gem 'chef-rewind'
 require 'chef/rewind'
 
+zookeepers = []
+if node['fqdn']
+  # Build out list of zookeeper servers before installing exhibitor
+  zookeepers = ["S:#{node['fqdn'].scan(/\d+/).first.to_i}:#{node['ipaddress']}"]
+end
+
+unless Chef::Config.solo
+  search(:node, "recipe:optoro_zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
+    if n['fqdn']
+      zookeepers << "S:#{n['fqdn'].scan(/\d+/).first.to_i}:#{n['ipaddress']}"
+    end
+  end
+  # Dedup our host name out of the array
+  zookeepers = zookeepers.uniq
+end
+
+node.default['exhibitor']['config']['servers_spec'] = zookeepers.join(',')
+
 include_recipe 'apt'
 include_recipe 'exhibitor'
 include_recipe 'exhibitor::service'
@@ -47,14 +65,4 @@ file ::File.join(node['exhibitor']['install_dir'], 'exhibitor.s3.properties') do
   mode 0400
   content(render_s3_credentials(node['exhibitor']['s3']))
   action :create
-end
-
-zookeepers = ["S:#{node['fqdn'].scan(/\d+/).first.to_i}:#{node['ipaddress']}"]
-
-unless Chef::Config.solo
-  search(:node, "recipe:optoro_zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
-    zookeepers << "S:#{n['fqdn'].scan(/\d+/).first}:#{n['ipaddress']}"
-  end
-  # Dedup our host name out of the array
-  zookeepers = zookeepers.uniq
 end
