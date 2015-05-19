@@ -17,9 +17,7 @@ describe 'optoro_zookeeper::default' do
                                run_list: ['recipe[optoro_zookeeper::default]'],
                                normal: {
                                  'fqdn' => 'test-zookeeper-002.optoro.com',
-                                 'network' => {
-                                   'ipaddress' => '192.168.1.100'
-                                 }
+                                 'ipaddress' => '192.168.1.100'
                                },
                                'chef_environment' => 'test-kitchen'
                                )
