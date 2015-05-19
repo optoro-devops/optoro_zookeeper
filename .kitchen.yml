@@ -22,7 +22,8 @@ suites:
 - name: default
   encrypted_data_bag_secret_key_path: "test/integration/encrypted_data_bag_secret"
   run_list:
-    - recipe[apt::default]
+    - recipe[optoro_aptly::repos]
+    - recipe[optoro_logstash::default]
     - recipe[optoro_zookeeper::test]
     - recipe[optoro_zookeeper::default]
   attributes:
