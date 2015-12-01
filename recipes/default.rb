@@ -33,7 +33,6 @@ include_recipe 'exhibitor'
 include_recipe 'exhibitor::service'
 include_recipe 'zookeeper'
 include_recipe 'aws'
-include_recipe 'optoro_metrics::zookeeper'
 
 s3_creds = query_role_credentials
 node.default!['exhibitor']['s3']['access_key_id'] = s3_creds['AccessKeyId']
