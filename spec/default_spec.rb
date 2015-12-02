@@ -20,7 +20,7 @@ describe 'optoro_zookeeper::default' do
                                  'ipaddress' => '192.168.1.100'
                                },
                                'chef_environment' => 'test-kitchen'
-                               )
+                              )
           end.converge(described_recipe)
         end
 
