@@ -1,22 +1,27 @@
 ---
+# Set ~/.aws/credentials file for access keys
+# $AWS_SSH_KEY_ID to specify what key to use
 driver:
   name: ec2
-  require_chef_omnibus: true
-  ssh_timeout: 20
-  ssh_retries: 5
+  require_chef_omnibus: 11.16.4
+  security_group_ids: ["sg-68ce330c"]
+  subnet_id: subnet-2f5f9f04
+  region: us-east-1
+  availability_zone: e
+  instance_type: m3.medium
+  image_id: ami-74b3e11c
   iam_profile_name: TestKitchenRole
- 
+  associate_public_ip: false
+  interface: private
+
+transport:
+  ssh_key: ~/.ssh/kp-2011-05-02.pem
+  username: ubuntu
+
+provisioner: chef_zero
+
 platforms:
   - name: ubuntu-14.04
-    driver:
-      username: ubuntu
-      tags:
-        Name: optoro_zookeeper-test_kitchen
- 
-provisioner:
-  name: chef_zero
-  require_chef_omnibus:  11.16.4
-  ebs_delete_on_termination: true
  
 suites:
 - name: default

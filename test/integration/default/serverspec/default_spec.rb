@@ -2,6 +2,7 @@ require 'spec_helper'
 require 'net/http'
 require 'uri'
 
+sleep(60)
 describe 'optoro_zookeeper::default' do
   describe file('/var/lib/zookeeper') do
     it { should be_directory }
