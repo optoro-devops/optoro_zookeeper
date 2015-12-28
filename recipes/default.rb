@@ -17,7 +17,7 @@ if node['fqdn']
 end
 
 unless Chef::Config.solo
-  search(:node, "recipe:optoro_zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
+  search(:node, "recipes:optoro_zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
     if n['fqdn']
       zookeepers << "S:#{n['fqdn'].scan(/\d+/).first.to_i}:#{n['ipaddress']}"
     end
