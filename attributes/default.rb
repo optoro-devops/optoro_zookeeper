@@ -6,3 +6,6 @@ default['exhibitor']['cli']['s3config'] = "optoro-exhibitor:#{node.chef_environm
 default['exhibitor']['cli']['s3region'] = 'us-east-1'
 node.default!['zookeeper']['group'] = 'zookeeper'
 override['zookeeper']['mirror'] = 'https://archive.apache.org/dist/zookeeper'
+
+# Consul
+default['optoro_consul']['register_consul_service'] = false
