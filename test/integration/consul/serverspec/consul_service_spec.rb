@@ -14,12 +14,12 @@ describe 'Consul Service' do
     it { should be_listening }
   end
 
-  it 'should be registered as master' do
+  it 'should be registered as master', retry: 5, retry_wait: 10 do
     expect(command('curl http://localhost:8500/v1/catalog/service/zookeeper').stdout)
       .to match(/zookeeper/)
   end
 
-  it 'should have a passing health check' do
+  it 'should have a passing health check', retry: 5, retry_wait: 10 do
     expect(command('curl http://localhost:8500/v1/health/checks/zookeeper').stdout)
       .to match(/passing/)
   end

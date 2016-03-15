@@ -39,9 +39,6 @@ describe 'optoro_zookeeper::default' do
         it 'includes zookeeper::default' do
           expect(chef_run).to include_recipe('zookeeper::default')
         end
-        it 'includes aws::default' do
-          expect(chef_run).to include_recipe('aws::default')
-        end
         it 'creates /var/lib/zookeeper' do
           expect(chef_run).to create_directory('/var/lib/zookeeper').with(user: 'zookeeper', group: 'zookeeper', mode: '0755')
         end

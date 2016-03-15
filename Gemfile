@@ -27,6 +27,7 @@ group :development do
   gem 'foodcritic-rules-optoro'
   gem 'chefspec', '~> 4.5.0'
   gem 'rspec', '~> 3.4.0'
+  gem 'rspec-retry', '~> 0.4.5'
   gem 'thor'
   gem 'rubocop', '~> 0.35.1'
   gem 'knife-solo', '0.4.2'
