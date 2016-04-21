@@ -19,7 +19,7 @@ if node['fqdn']
 end
 
 unless Chef::Config.solo
-  search(:node, "recipes:optoro_zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
+  search(:node, "recipes:optoro_zookeeper\\:\\:default AND chef_environment:#{node.chef_environment}").each do |n|
     if n['fqdn']
       zookeepers << "S:#{n['fqdn'].scan(/\d+/).first.to_i}:#{n['ipaddress']}"
     end
@@ -34,12 +34,16 @@ include_recipe 'apt'
 include_recipe 'exhibitor'
 include_recipe 'exhibitor::service'
 include_recipe 'zookeeper'
-include_recipe 'aws'
 include_recipe 'optoro_zookeeper::consul' if node['optoro_consul']['register_consul_service']
 
-s3_creds = query_role_credentials
-node.default!['exhibitor']['s3']['access_key_id'] = s3_creds['AccessKeyId']
-node.default!['exhibitor']['s3']['access_secret_key'] = s3_creds['SecretAccessKey']
+if node['ec2']
+  include_recipe 'aws'
+
+  s3_creds = query_role_credentials
+  node.default!['exhibitor']['s3']['access_key_id'] = s3_creds['AccessKeyId']
+  node.default!['exhibitor']['s3']['access_secret_key'] = s3_creds['SecretAccessKey']
+end
+
 node.default!['exhibitor']['cli']['configtype'] = 's3'
 
 # We hard code using exhibitor to bring up ZK nodes
