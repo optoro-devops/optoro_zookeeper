@@ -14,7 +14,6 @@ Installs and configures Zookeeper using exhibitor
 * exhibitor (>= 0.4.0)
 * zookeeper (>= 2.4.1)
 * aws (>= 2.5.3)
-* optoro_metrics
 
 # Attributes
 
