@@ -7,7 +7,9 @@
 # All rights reserved - Do Not Redistribute
 #
 
-chef_gem 'chef-rewind'
+chef_gem 'chef-rewind' do
+  compile_time true if respond_to?(:compile_time)
+end
 require 'chef/rewind'
 
 zookeepers = []
@@ -45,7 +47,7 @@ node.default['zookeeper']['service_style'] = 'exhibitor'
 
 zookeeper '3.4.6' do
   user 'zookeeper'
-  mirror 'http://www.poolsaboveground.com/apache/zookeeper'
+  mirror 'http://apache.mirrors.hoobly.com/zookeeper/'
   checksum '01b3938547cd620dc4c93efe07c0360411f4a66962a70500b163b59014046994'
   action :install
 end
