@@ -8,6 +8,10 @@ describe 'optoro_zookeeper::test' do
           ChefSpec::ServerRunner.new(platform: platform, version: version, log_level: :error) do |_node|
           end.converge(described_recipe)
         end
+
+        it 'installs curl' do
+          expect(chef_run).to install_package('curl')
+        end
       end
     end
   end

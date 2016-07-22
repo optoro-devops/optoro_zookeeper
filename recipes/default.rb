@@ -32,22 +32,16 @@ node.default['exhibitor']['config']['servers_spec'] = zookeepers.join(',')
 
 include_recipe 'apt'
 include_recipe 'exhibitor'
-include_recipe 'exhibitor::service'
 include_recipe 'zookeeper'
-include_recipe 'aws'
+include_recipe 'aws' if node['ec2']
 include_recipe 'optoro_zookeeper::consul' if node['optoro_consul']['register_consul_service']
-
-s3_creds = query_role_credentials
-node.default!['exhibitor']['s3']['access_key_id'] = s3_creds['AccessKeyId']
-node.default!['exhibitor']['s3']['access_secret_key'] = s3_creds['SecretAccessKey']
-node.default!['exhibitor']['cli']['configtype'] = 's3'
 
 # We hard code using exhibitor to bring up ZK nodes
 node.default['zookeeper']['service_style'] = 'exhibitor'
 
 zookeeper '3.4.6' do
   user 'zookeeper'
-  mirror 'http://apache.mirrors.hoobly.com/zookeeper/'
+  mirror node['zookeeper']['mirror']
   checksum '01b3938547cd620dc4c93efe07c0360411f4a66962a70500b163b59014046994'
   action :install
 end
@@ -69,3 +63,5 @@ file ::File.join(node['exhibitor']['install_dir'], 'exhibitor.s3.properties') do
   content(render_s3_credentials(node['exhibitor']['s3']))
   action :create
 end
+
+include_recipe 'exhibitor::service'
