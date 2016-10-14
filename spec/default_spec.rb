@@ -19,8 +19,7 @@ describe 'optoro_zookeeper::default' do
                                  'fqdn' => 'test-zookeeper-002.optoro.com',
                                  'ipaddress' => '192.168.1.100'
                                },
-                               'chef_environment' => 'test-kitchen'
-                              )
+                               'chef_environment' => 'test-kitchen')
           end.converge(described_recipe)
         end
 

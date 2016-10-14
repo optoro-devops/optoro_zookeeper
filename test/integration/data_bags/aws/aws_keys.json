@@ -1,0 +1,15 @@
+{
+  "id": "aws_keys",
+  "exhibitor_access_key_id": {
+    "encrypted_data": "6G44qigcFA9WZUas6q78M4EFiNUKc0+yg0Pv0KK18P4=\n",
+    "iv": "N+IQCOmSP/RLXYS5TxLw8g==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "exhibitor_secret_access_key": {
+    "encrypted_data": "QNQdaQ+RBhnhxR7Mu+DFK3VsgFqZaHo1YQHSkdYGDRw=\n",
+    "iv": "geZ+HtaCeGyY7X8jKg1RQA==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  }
+}

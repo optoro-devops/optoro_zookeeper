@@ -2,9 +2,15 @@ require 'spec_helper'
 require 'net/http'
 require 'uri'
 
-sleep(60)
+sleep(120)
 describe 'optoro_zookeeper::default' do
   describe file('/var/lib/zookeeper') do
+    it { should be_directory }
+    it { should be_mode '755' }
+    it { should be_owned_by 'zookeeper' }
+    it { should be_grouped_into 'zookeeper' }
+  end
+  describe file('/opt/zookeeper/zookeeper-3.4.6') do
     it { should be_directory }
     it { should be_mode '755' }
     it { should be_owned_by 'zookeeper' }
@@ -32,6 +38,9 @@ describe 'optoro_zookeeper::default' do
     it { should be_listening }
   end
   describe port(8080) do
+    it { should be_listening }
+  end
+  describe port(9114) do
     it { should be_listening }
   end
 end
