@@ -19,8 +19,7 @@ describe 'optoro_zookeeper::default' do
                                  'fqdn' => 'test-zookeeper-002.optoro.com',
                                  'ipaddress' => '192.168.1.100'
                                },
-                               'chef_environment' => 'test-kitchen'
-                              )
+                               'chef_environment' => 'test-kitchen')
           end.converge(described_recipe)
         end
 
@@ -38,9 +37,6 @@ describe 'optoro_zookeeper::default' do
         end
         it 'includes zookeeper::default' do
           expect(chef_run).to include_recipe('zookeeper::default')
-        end
-        it 'includes aws::default' do
-          expect(chef_run).to include_recipe('aws::default')
         end
         it 'creates /var/lib/zookeeper' do
           expect(chef_run).to create_directory('/var/lib/zookeeper').with(user: 'zookeeper', group: 'zookeeper', mode: '0755')
