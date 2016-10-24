@@ -5,7 +5,7 @@ license 'MIT'
 description 'Installs and configures Zookeeper using exhibitor'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 source_url 'https://github.com/optoro-devops/optoro_zookeeper'
-version '0.0.14'
+version '0.0.15'
 
 supports 'ubuntu', '= 14.04'
 

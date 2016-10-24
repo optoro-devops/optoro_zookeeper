@@ -28,7 +28,7 @@ end
 consul_definition 'zookeeper-metrics' do
   type 'service'
   parameters(
-    port: 9100,
+    port: 9114,
     tags: [node['fqdn']],
     enableTagOverride: false,
     check: {
